@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { catchError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ObjectUnsubscribedErrorCtor } from 'rxjs/internal/util/ObjectUnsubscribedError';
 
 const apiUrl = 'https://mymoviedbcf.herokuapp.com/';
 
@@ -115,7 +116,7 @@ export class FetchApiDataService {
   }
 
   // Non-typed response extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Response | Object): any {
     const body = res;
     return body || { };
   }
