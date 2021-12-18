@@ -15,10 +15,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserPageComponent implements OnInit {
 
-  favorites: any[] = [];
   favMov: any = [];
   user: any = {};
   movies: any[] = [];
+  favorites: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -28,6 +28,7 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getFav();
     this.getMovies();
   }
 
@@ -36,7 +37,7 @@ export class UserPageComponent implements OnInit {
     this.fetchApiData.getUser(user).subscribe((res: any) => {
       this.favorites = res.FavoriteMovies;
       console.log(this.favorites);
-      return this.favorites;
+      return this.filterMovies();
     });
   }
 
@@ -44,12 +45,11 @@ export class UserPageComponent implements OnInit {
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
       this.movies = res;
       console.log(this.movies);
-      return this.filterMovies();
+      return this.movies;
     });
   }
 
   filterMovies(): void {
-    console.log(this.favorites);
     this.movies.forEach((movie: any) => {
       if (this.favorites.includes(movie._id)) {
         this.favMov.push(movie);
@@ -105,7 +105,5 @@ export class UserPageComponent implements OnInit {
         duration: 2000
       });
     });
-    return this.getFav();
   }
-
 }
