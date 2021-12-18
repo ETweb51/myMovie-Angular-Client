@@ -1,0 +1,21 @@
+.moviesWrapper {
+    display:flex;
+    flex-direction: row;
+}
+
+.mainCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nofav {
+    float:right;
+    cursor: pointer;
+}
+  
+.fav {
+    float: right;
+    color: red;
+    cursor: pointer;
+}
