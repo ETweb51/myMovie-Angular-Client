@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,10 +25,13 @@ import { GenreCardComponent } from './genre-card/genre-card.component';
 import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { EditCardComponent } from './edit-card/edit-card.component';
+import { DeleteCardComponent } from './delete-card/delete-card.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserPageComponent},
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' }
 ];
 
@@ -42,7 +46,9 @@ const appRoutes: Routes = [
     GenreCardComponent,
     SynopsisCardComponent,
     UserPageComponent,
-    EditCardComponent
+    EditCardComponent,
+    DeleteCardComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +56,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatToolbarModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,

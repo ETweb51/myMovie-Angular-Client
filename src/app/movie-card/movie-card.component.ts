@@ -70,6 +70,7 @@ export class MovieCardComponent implements OnInit {
         duration: 2000
       });
     });
+    this.ngOnInit();
     return this.getFav();
   }
 
@@ -80,6 +81,7 @@ export class MovieCardComponent implements OnInit {
         duration: 2000
       });
     });
+    this.ngOnInit();
     return this.getFav();
   }
 

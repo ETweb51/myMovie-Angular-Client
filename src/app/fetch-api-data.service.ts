@@ -67,7 +67,7 @@ export class FetchApiDataService {
 
   addMovie(username: any, movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + `users/${username}/movies/${movieId}`, {headers: new HttpHeaders(
+    return this.http.post(apiUrl + `users/${username}/movies/${movieId}`, null, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       }
@@ -89,9 +89,10 @@ export class FetchApiDataService {
     );
   }
 
-  editUser(username: any, newDetails: object): Observable<any> {
+  editUser(userData: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + `users/${username}`, newDetails, {headers: new HttpHeaders(
+    const username = localStorage.getItem('user');
+    return this.http.put(apiUrl + `users/${username}`, userData, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       }

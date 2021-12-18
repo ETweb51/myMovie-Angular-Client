@@ -1,1 +1,67 @@
-<p>user-page works!</p>
+<app-nav-bar></app-nav-bar>
+<div class="user-profile">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Hello {{user.Name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p><b>Username:</b> {{user.Name}}</p>
+            <p><b>Email:</b> {{user.Mail}}</p>
+            <p><b>Birthdate:</b> {{user.Birthday}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button
+                mat-raised-button
+                (click)="openUserEditDialog()"
+                style="margin-right: 10px;"
+                color="primary"
+            >
+                Edit profile
+            </button>
+            <button
+                mat-raised-button
+                (click)="openUserDeleteDialog()"
+                color="primary"
+            >
+                Delete profile
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div class="fav-wrapper">
+    <h2>Your favorite movies</h2>
+    <mat-card *ngFor="let movie of favMov;" class="mainCard">
+        <mat-card-header><h1>{{movie.Title}}{{movie.Name}}</h1></mat-card-header>
+        <mat-card-content><img src="{{movie.ImageUrl}}" alt="{{movie.Title}}{{movie.Name}}"/></mat-card-content>
+        <mat-card-actions>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="openSynopsisDialog(
+                    movie.Title || movie.Name,
+                    movie.Description
+                )"
+            >Movie Details</button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="openDirectorDialog(
+                    movie.Director.Name,
+                    movie.Director.Bio,
+                    movie.Director.Birthyear
+                )"
+            >Director</button>
+            <button
+				mat-raised-button
+				color="primary"
+                (click)="openGenreDialog(
+                    movie.Genre.Name,
+                    movie.Genre.Description
+                )"
+			>Genre</button>
+        </mat-card-actions>
+        <button mat-icon-button color="warn">
+            <mat-icon (click)="removeMovieFromFav(movie._id, movie.Title)">favorite</mat-icon>
+        </button>
+    </mat-card>
+</div>
