@@ -25,6 +25,9 @@ export class EditCardComponent implements OnInit {
     this.getUser();
   }
 
+  /**
+   * Getting the user (details) and storing it
+   */
   getUser(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser(user).subscribe((res: any) => {
@@ -33,7 +36,10 @@ export class EditCardComponent implements OnInit {
       return this.user
     });
   }
-
+  
+  /**
+   * Editing the user via the data input made by the user
+   */
   editUserInformation(): void {
     this.fetchApiData.editUser(this.userData).subscribe((res: any) => {
       this.dialogRef.close();

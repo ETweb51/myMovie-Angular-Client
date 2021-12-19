@@ -19,6 +19,9 @@ export class DeleteCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Deletes the user
+   */
   deleteUser(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.deleteUser(user).subscribe((res: any) => {

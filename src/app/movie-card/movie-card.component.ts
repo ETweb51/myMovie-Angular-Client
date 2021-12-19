@@ -28,6 +28,9 @@ export class MovieCardComponent implements OnInit {
     this.getFav();
   }
 
+  /**
+   * Getting all movies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
       this.movies = res;
@@ -36,6 +39,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Getting the favorites of a user
+   */
   getFav(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser(user).subscribe((res: any) => {
@@ -45,24 +51,46 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens the genre dialog
+   * @param name 
+   * @param description 
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {name, description},
     });
   }
-
+  
+  /**
+   * Opens the director dialog
+   * @param name 
+   * @param bio 
+   * @param birth 
+   */
   openDirectorDialog(name: string, bio: string, birth: any): void {
     this.dialog.open(DirectorCardComponent, {
       data: {name, bio, birth},
     });
   }
 
+  /**
+   * Opens the synopsis (movie details) dialog
+   * @param title 
+   * @param description 
+   */
   openSynopsisDialog(title: string, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       data: {title, description},
     });
   }
 
+  /**
+   * Adds a movie to the favorite list of an user
+   * @param movieID 
+   * @param title 
+   * @returns the updated list
+   */
   addMovieToFav(movieID: any, title: string): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.addMovie(user, movieID).subscribe((res: any) =>{
@@ -74,6 +102,12 @@ export class MovieCardComponent implements OnInit {
     return this.getFav();
   }
 
+  /**
+   * Removes a movie from the favorite list of an user
+   * @param movieID 
+   * @param title 
+   * @returns the updated list
+   */
   removeMovieFromFav(movieID: any, title: string): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.deleteMovie(user, movieID).subscribe((res: any) =>{
@@ -84,7 +118,12 @@ export class MovieCardComponent implements OnInit {
     this.ngOnInit();
     return this.getFav();
   }
-
+  
+  /**
+   * Checks wether the movie is in the favorites list of an user
+   * @param movieID 
+   * @returns a boolean expression
+   */
   isFav(movieID: any): boolean {
     if (this.favMov.indexOf(movieID) > -1) {
       return true;

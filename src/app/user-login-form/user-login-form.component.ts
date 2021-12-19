@@ -24,6 +24,10 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * User logs in with username and password
+   * token and username are stored in the local storage
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userCredentials).subscribe((result) => {
       this.dialogRef.close();
